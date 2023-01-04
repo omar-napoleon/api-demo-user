@@ -1,5 +1,6 @@
 package com.example.demouser.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +13,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserPhoneDto implements Serializable {
+public class PhoneDto implements Serializable {
     @Size(min=8)
     private String number;
     @Size(min=1)
+    @JsonProperty("citycode")
     private String cityCode;
     @Size(min=1)
+    @JsonProperty("countrycode")
     private String countryCode;
 }

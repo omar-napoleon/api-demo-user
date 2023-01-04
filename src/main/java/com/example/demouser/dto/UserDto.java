@@ -32,5 +32,5 @@ public class UserDto implements Serializable {
     private String token;
     private Boolean isActive;
 
-    private List<UserPhoneDto> phones;
+    private List<PhoneDto> phones;
 }

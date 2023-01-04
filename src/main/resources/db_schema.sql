@@ -1,7 +1,7 @@
---DROP TABLE IF EXISTS phones;
---DROP TABLE IF EXISTS users;
+--DROP TABLE IF EXISTS phone;
+--DROP TABLE IF EXISTS user;
 
-CREATE TABLE users (
+CREATE TABLE user (
                        id VARCHAR(100) PRIMARY KEY,
                        name VARCHAR(100) NOT NULL,
                        email VARCHAR(100) NOT NULL,
@@ -15,11 +15,11 @@ CREATE TABLE users (
                        UNIQUE (email)
 );
 
-CREATE TABLE phones (
+CREATE TABLE phone (
                              id VARCHAR(100) PRIMARY KEY,
                              user_id VARCHAR(100) NOT NULL,
                              number VARCHAR(100) NOT NULL,
-                             city_code INTEGER NOT NULL,
-                             country_code INTEGER NOT NULL,
-                             FOREIGN KEY (user_id) REFERENCES users(id)
+                             city_code VARCHAR(100) NOT NULL,
+                             country_code VARCHAR(100) NOT NULL,
+                             FOREIGN KEY (user_id) REFERENCES user(id)
 );

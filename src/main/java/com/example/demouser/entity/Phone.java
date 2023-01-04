@@ -11,25 +11,24 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter
 @Setter
 @Builder
-public class Phones {
+public class Phone {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+
     @ManyToOne
-    @JoinColumn(name = "users_id")
-    private Users users;
+    @JoinColumn(name = "user_id", nullable=false, referencedColumnName = "id")
+    private User user;
 
     @Column(name = "number")
     private String number;
 
-    @Column(name = "city:code")
+    @Column(name = "city_code")
     private String cityCode;
 
     @Column(name = "country_code")
     private String countryCode;
+
 }

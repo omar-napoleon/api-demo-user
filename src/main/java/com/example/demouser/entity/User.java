@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -19,12 +22,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Users implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "ID")
+    @Column(name = "id")
     private UUID id;
 
     @Column(name = "name")
@@ -57,9 +60,11 @@ public class Users implements Serializable {
     @Column(name = "token_expiration")
     private Instant tokenExpiration;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-    private List<Phones> phones = new java.util.ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Phone> phones = new java.util.ArrayList<>();
+
 }
+
 
 
 
