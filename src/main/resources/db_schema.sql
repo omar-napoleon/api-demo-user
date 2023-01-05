@@ -12,6 +12,7 @@ CREATE TABLE user (
                        is_active BOOLEAN NOT NULL,
                        token VARCHAR(255) NOT NULL,
                        token_expiration DATETIME NOT NULL,
+                       role_jwt VARCHAR(10) NOT NULL,
                        UNIQUE (email)
 );
 

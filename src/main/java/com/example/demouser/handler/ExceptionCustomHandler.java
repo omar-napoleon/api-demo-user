@@ -2,13 +2,14 @@ package com.example.demouser.handler;
 
 
 import com.example.demouser.dto.ExceptionResponseDto;
-import com.example.demouser.dto.UserDto;
 import com.example.demouser.exception.CustomException;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,9 +44,22 @@ public class ExceptionCustomHandler {
         return sendResponse(HttpStatus.BAD_REQUEST, ex);
     }
 
-    @ExceptionHandler({ResourceNotFoundException.class})
+    @ExceptionHandler({ResourceNotFoundException.class,
+            UsernameNotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ExceptionResponseDto handleUsernameNotFoundException(RuntimeException ex) {
+        return sendResponse(HttpStatus.NOT_FOUND, ex);
+    }
+
+    @ExceptionHandler({Exception.class})
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ExceptionResponseDto handleException(Exception ex) {
+        return sendResponse(HttpStatus.NOT_FOUND, ex);
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ExceptionResponseDto handleException(RuntimeException ex) {
         return sendResponse(HttpStatus.NOT_FOUND, ex);
     }
 

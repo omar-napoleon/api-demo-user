@@ -1,6 +1,7 @@
 #MESSAGES CUSTOM
 response:
   userExist: This email is already registered
+  userNotFound: Not found email
 valid:
   invalidEmail: Invalid email
   invalidPassword: Password must contain at least 8 characters, a number and a uppercase letter
