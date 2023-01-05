@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:messages.properties")
+@PropertySource("classpath:application.yml")
 @ConfigurationProperties(prefix = "msg")
 @Data
 public class MessageConfig {
