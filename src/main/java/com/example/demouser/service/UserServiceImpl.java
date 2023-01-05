@@ -7,8 +7,11 @@ import com.example.demouser.exception.CustomException;
 import com.example.demouser.mapper.UserMapper;
 import com.example.demouser.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.Locale;
 
 
 @Service
@@ -18,13 +21,13 @@ public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
 
-    private final MessageConfig msgConfig;
+    private final MessageSource messageSource;
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper, UserRepository userRepository, MessageConfig msgConfig) {
+    public UserServiceImpl(UserMapper userMapper, UserRepository userRepository, MessageSource messageSource) {
         this.userMapper = userMapper;
         this.userRepository = userRepository;
-        this.msgConfig = msgConfig;
+        this.messageSource = messageSource;
     }
 
     @Override
@@ -36,7 +39,8 @@ public class UserServiceImpl implements IUserService {
 
     private void existEmail(String email) throws Exception {
         if(userRepository.findByEmail(email).isPresent()) {
-            throw new CustomException(msgConfig.getUserExist(), HttpStatus.FORBIDDEN);
+            throw new CustomException(messageSource.getMessage(
+                    "response.userExist", null, Locale.ENGLISH), HttpStatus.FORBIDDEN);
         }
     }
 

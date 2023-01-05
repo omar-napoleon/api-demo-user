@@ -1,0 +1,8 @@
+#MESSAGES CUSTOM
+response:
+  userExist: This email is already registered
+valid:
+  invalidEmail: Invalid email
+  invalidPassword: Password must contain at least 8 characters, a number and a uppercase letter
+  invalidName: It must not be a null or empty name
+  invalidPhones: Phones must contain number, city code, country code

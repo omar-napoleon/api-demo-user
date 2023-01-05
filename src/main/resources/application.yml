@@ -12,6 +12,6 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate: ddl-auto=create-drop
 
-#MESSAGES CUSTOM
-msg:
-  userExist: This email is already registered
+# REGEX
+regex:
+  password: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$

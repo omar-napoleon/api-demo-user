@@ -1,8 +1,12 @@
 package com.example.demouser.dto;
 
+import com.example.demouser.validator.Password;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,15 +20,16 @@ import java.util.List;
 @NoArgsConstructor
 public class UserDto implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @NotBlank
+    @NotBlank(message = "{valid.invalidName}")
     private String name;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @NotBlank
+    @Email(message = "{valid.invalidEmail}")
     private String email;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @NotNull
+    @Password(message = "{valid.invalidPassword}")
     private String password;
 
     private String id;
