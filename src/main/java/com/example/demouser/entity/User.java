@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.Instant;
 import java.util.List;
@@ -33,7 +34,7 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")

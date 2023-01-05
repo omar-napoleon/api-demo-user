@@ -15,9 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto implements Serializable {
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @NotBlank
     private String name;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @NotBlank
     private String email;
 
@@ -30,7 +32,8 @@ public class UserDto implements Serializable {
     private Instant modifiedAt;
     private Instant lastLogin;
     private String token;
-    private Boolean isActive;
+    private boolean isActive;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<PhoneDto> phones;
 }

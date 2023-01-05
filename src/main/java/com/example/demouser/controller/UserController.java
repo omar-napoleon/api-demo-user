@@ -3,6 +3,7 @@ package com.example.demouser.controller;
 import com.example.demouser.dto.UserDto;
 import com.example.demouser.service.IUserService;
 import com.example.demouser.service.UserServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return new ResponseEntity<UserDto>( iUserService.createUser(userDto), HttpStatus.CREATED);
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) throws Exception {
+        return new ResponseEntity<>(iUserService.createUser(userDto), HttpStatus.CREATED);
     }
 }

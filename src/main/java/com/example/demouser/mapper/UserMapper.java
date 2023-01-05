@@ -13,9 +13,11 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", uses = PhoneMapper.class, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
-    UserMapper INST = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "password", source = "password", ignore = true)
+    @Mapping(target = "phones", source = "phones", ignore = true)
+    @Mapping(target = "email", source = "email", ignore = true)
+    @Mapping(target = "name", source = "name", ignore = true)
     UserDto userEntityToUserDto(User user);
 
     @Mapping(source = "password", target = "password")
@@ -23,16 +25,14 @@ public interface UserMapper {
 
     @AfterMapping
     default User setUserOnPhones(@MappingTarget User user) {
-        List<Phone> userPhones = user.getPhones().stream().map(userPhone -> {
+        List<Phone> Phones = user.getPhones().stream().map(userPhone -> {
             userPhone.setUser(user);
             return userPhone;
         }).collect(Collectors.toList());
-
         user.setActive(true);
-
-        user.setPhones(userPhones);
+        user.setPhones(Phones);
         user.setToken(UUID.randomUUID().toString());
-        user.setTokenExpiration(Instant.now().plusSeconds(60));
+        user.setTokenExpiration(Instant.now().plusSeconds(120));
         user.setLastLogin(Instant.now());
 
         return user;
