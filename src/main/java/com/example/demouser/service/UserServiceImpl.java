@@ -20,7 +20,7 @@ import java.time.Instant;
 import java.util.Locale;
 import java.util.UUID;
 
-import static com.example.demouser.utils.Constants.EXPIRATION_TOKEN_SECONDS;
+import static com.example.demouser.helper.Constants.EXPIRATION_TOKEN_SECONDS;
 
 
 @Service

@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import static com.example.demouser.utils.Constants.EXPIRATION_TOKEN_SECONDS;
+import static com.example.demouser.helper.Constants.EXPIRATION_TOKEN_SECONDS;
 
 @Service
 public class JwtService {

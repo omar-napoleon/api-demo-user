@@ -10,6 +10,7 @@ import java.time.Instant;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ExceptionResponseDto implements Serializable {
 
     private String error;

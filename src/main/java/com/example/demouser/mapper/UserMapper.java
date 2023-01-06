@@ -10,10 +10,9 @@ import org.mapstruct.*;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static com.example.demouser.utils.Constants.EXPIRATION_TOKEN_SECONDS;
+import static com.example.demouser.helper.Constants.EXPIRATION_TOKEN_SECONDS;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
