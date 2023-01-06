@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "18e9d8c2-a67f-4ab1-8a89-33477bae20c2",
+		"name": "demo-user-jwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2481291"
+	},
+	"item": [
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"name\": \"Juan Rodriguez\",\n \"email\": \"juanr@odriguez.org\",\n \"password\": \"Bci00001\",\n \"phones\": [\n{\n\n \"number\": \"1234567\",\n \"citycode\": \"1\",\n \"countrycode\": \"57\"\n } ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"email\": \"juanr@odriguez.org\",\n \"password\": \"Bci00001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/user/authenticate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Demo Test JWT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuckBvZHJpZ3Vlei5vcmciLCJpYXQiOjE2NzI5NTk2MTEsImV4cCI6MTY3Mjk2MzIxMX0.al-v7gYtqoqbTVKbHBXpnXWPPG5SRCTEnu8YU6Lm9p0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/demo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"demo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Demo get user by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuckBvZHJpZ3Vlei5vcmciLCJpYXQiOjE2NzI5NjI1NTQsImV4cCI6MTY3Mjk2NjE1NH0.mRI4GN7s4QKzgJU-ASYgmAQr6SjMeVOoJG7WNZvWEk4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/demo/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"demo",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "a75354e1-4153-42a7-b669-a0236046f1d1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

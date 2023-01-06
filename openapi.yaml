@@ -1,0 +1,272 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /api/v1/user/register:
+    post:
+      tags:
+        - user-controller
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/UserResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+  /api/v1/user/authenticate:
+    post:
+      tags:
+        - user-controller
+      operationId: authenticate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequestDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+                
+  /api/v1/demo:
+    get:
+      tags:
+        - demo-controller
+      operationId: sayHello
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          schema:
+            type: string
+          examples:
+            Authorization:
+              description: Authorization
+              value: Bearer 1233Token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+  /api/v1/demo/{id}:
+    get:
+      tags:
+        - demo-controller
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          schema:
+            type: string
+          examples:
+            Authorization:
+              description: Authorization
+              value: Bearer 1233Token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/UserResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ExceptionResponseDto'
+components:
+  schemas:
+    ExceptionResponseDto:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    PhoneDto:
+      type: object
+      properties:
+        number:
+          maxLength: 2147483647
+          minLength: 8
+          type: string
+        citycode:
+          maxLength: 2147483647
+          minLength: 1
+          type: string
+        countrycode:
+          maxLength: 2147483647
+          minLength: 1
+          type: string
+    UserRequestDto:
+      required:
+        - email
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneDto'
+    UserResponseDto:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        lastLogin:
+          type: string
+          format: date-time
+        token:
+          type: string
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneDto'
+        isActive:
+          type: boolean
+    AuthenticationRequestDto:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    AuthenticationResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
