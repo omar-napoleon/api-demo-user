@@ -15,3 +15,8 @@ spring:
 # REGEX
 regex:
   password: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$
+
+  # Paths to exclude
+  # Packages to include
+springdoc:
+  pathsToMatch: /api/v1/demo/**, /api/v1/user/**
